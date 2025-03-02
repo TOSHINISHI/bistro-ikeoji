@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bistro IKEOJI - 大人の隠れ家レストラン</title>
+    <style>
+        /* 全体のスタイル */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Helvetica Neue', 'Arial', sans-serif;
+            color: #333;
+            line-height: 1.6;
+            background-color: #f8f8f8;
+        }
+        
+        /* ヘッダー */
+        header {
+            background-color: #1a1a1a;
+            color: #fff;
+            padding: 20px 0;
+            position: relative;
+        }
+        
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #e6c200;
+        }
+        
+        .tagline {
+            font-size: 1rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+            margin-top: 5px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: #e6c200;
+        }
+        
+        /* ヒーローセクション */
+        .hero {
+            height: 70vh;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/api/placeholder/1200/800');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+            padding: 0 20px;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: 3px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin-bottom: 30px;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: #e6c200;
+            color: #1a1a1a;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 2px;
+            transition: background-color 0.3s;
+            letter-spacing: 1px;
+        }
+        
+        .btn:hover {
+            background-color: #cca800;
+        }
+        
+        /* セクション共通 */
+        section {
+            padding: 80px 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #1a1a1a;
+        }
+        
+        .section-title p {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* コンセプト */
+        .concept {
+            background-color: #fff;
+        }
+        
+        .concept-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .concept-text {
+            flex: 1;
+            min-width: 300px;
+            padding-right: 40px;
+        }
+        
+        .concept-text h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #1a1a1a;
+        }
+        
+        .concept-text p {
+            margin-bottom: 20px;
+            color: #444;
+            line-height: 1.8;
+        }
+        
+        .concept-image {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .concept-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 2px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* メニュー */
+        .menu {
+            background-color: #f8f8f8;
+        }
+        
+        .menu-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .menu-item {
+            background-color: #fff;
+            border-radius: 2px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .menu-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .menu-item-image {
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .menu-item-content {
+            padding: 25px;
+        }
+        
+        .menu-item h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #1a1a1a;
+        }
+        
+        .menu-item p {
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.7;
+        }
+        
+        .menu-item .price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #e6c200;
+        }
+        
+        /* インフォメーション */
+        .info {
+            background-color: #fff;
+        }
+        
+        .info-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        
+        .info-details {
+            flex: 1;
+            min-width: 300px;
+            padding-right: 40px;
+        }
+        
+        .info-details h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #1a1a1a;
+        }
+        
+        .info-item {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .info-item strong {
+            display: inline-block;
+            width: 100px;
+            color: #1a1a1a;
+            font-weight: 600;
+        }
+        
+        .info-map {
+            flex: 1;
+            min-width: 300px;
+            height: 350px;
+            background-color: #eee;
+        }
+        
+        /* 予約セクション */
+        .reservation {
+            background-color: #1a1a1a;
+            color: #fff;
+            text-align: center;
+            padding: 60px 20px;
+        }
+        
+        .reservation h2 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+        
+        .reservation p {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            color: #ccc;
+        }
+        
+        .tel {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #e6c200;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+        
+        /* フッター */
+        footer {
+            background-color: #111;
+            color: #aaa;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-logo {
+            color: #e6c200;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+        
+        .footer-links {
+            margin-bottom: 20px;
+        }
+        
+        .footer-links a {
+            color: #aaa;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: #e6c200;
+        }
+        
+        .social-links {
+            margin-bottom: 20px;
+        }
+        
+        .social-links a {
+            display: inline-block;
+            color: #aaa;
+            margin: 0 10px;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: #e6c200;
+        }
+        
+        .copyright {
+            font-size: 0.8rem;
+            color: #666;
+        }
+        
+        /* レスポンシブ対応 */
+        @media screen and (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .concept-text, .concept-image, .info-details, .info-map {
+                flex: 100%;
+                min-width: 100%;
+                padding-right: 0;
+                margin-bottom: 30px;
+            }
+            
+            .menu-items {
+                grid-template-columns: 1fr;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                text-align: right;
+            }
+            
+            nav ul li {
+                margin-left: 0;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ヘッダー -->
+    <header>
+        <div class="header-container">
+            <div>
+                <div class="logo">BISTRO IKEOJI</div>
+                <div class="tagline">大人の隠れ家レストラン</div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#concept">コンセプト</a></li>
+                    <li><a href="#menu">メニュー</a></li>
+                    <li><a href="#info">店舗情報</a></li>
+                    <li><a href="#reservation">ご予約</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ヒーロー -->
+    <section class="hero">
+        <h1>洗練された味わいと空間</h1>
+        <p>大人の余裕が香る隠れ家ビストロで、選りすぐりのワインと本格フレンチをお楽しみください。</p>
+        <a href="#reservation" class="btn">予約する</a>
+    </section>
+
+    <!-- コンセプト -->
+    <section id="concept" class="concept">
+        <div class="container">
+            <div class="section-title">
+                <h2>OUR CONCEPT</h2>
+                <p>ビストロ イケオジのこだわり</p>
+            </div>
+            <div class="concept-content">
+                <div class="concept-text">
+                    <h3>大人の嗜みとしての料理とワイン</h3>
+                    <p>Bistro IKEOJIは、洗練された大人の男性が本当に価値のあるものを見極め、楽しむための空間です。</p>
+                    <p>シェフが厳選した旬の食材と、ソムリエが世界中から集めた希少なワインのマリアージュ。そこには、年を重ねた大人だからこそわかる深い味わいがあります。</p>
+                    <p>隠れ家のような落ち着いた空間で、仕事を離れ、本当の自分と向き合う時間。それがビストロ イケオジの提供する価値です。</p>
+                </div>
+                <div class="concept-image">
+                    <img src="/api/placeholder/600/400" alt="ビストロの内装">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- メニュー -->
+    <section id="menu" class="menu">
+        <div class="container">
+            <div class="section-title">
+                <h2>OUR MENU</h2>
+                <p>シェフ厳選の本格フレンチと世界のワイン</p>
+            </div>
+            <div class="menu-items">
+                <div class="menu-item">
+                    <div class="menu-item-image" style="background-image: url('/api/placeholder/400/300')"></div>
+                    <div class="menu-item-content">
+                        <h3>季節の前菜盛り合わせ</h3>
+                        <p>旬の食材を使った彩り豊かな前菜5種の盛り合わせ。その日の市場で最も鮮度の良い食材を使用します。</p>
+                        <div class="price">¥2,800</div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-image" style="background-image: url('/api/placeholder/400/300')"></div>
+                    <div class="menu-item-content">
+                        <h3>シャラン鴨のロースト</h3>
+                        <p>フランス産シャラン鴨を使用した贅沢なロースト。赤ワインとベリーのソースで仕上げました。</p>
+                        <div class="price">¥3,600</div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-image" style="background-image: url('/api/placeholder/400/300')"></div>
+                    <div class="menu-item-content">
+                        <h3>黒毛和牛フィレ肉のポワレ</h3>
+                        <p>A5ランクの黒毛和牛フィレ肉を使ったポワレ。トリュフソースと季節の野菜を添えて。</p>
+                        <div class="price">¥4,800</div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-image" style="background-image: url('/api/placeholder/400/300')"></div>
+                    <div class="menu-item-content">
+                        <h3>本日のデザート</h3>
+                        <p>パティシエ特製の日替わりデザート。フランス伝統のスイーツを現代的にアレンジしています。</p>
+                        <div class="price">¥1,500</div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-image" style="background-image: url('/api/placeholder/400/300')"></div>
+                    <div class="menu-item-content">
+                        <h3>シェフおまかせコース</h3>
+                        <p>前菜からデザートまで、シェフ厳選の全6品。季節の食材を存分に楽しめる特別コースです。</p>
+                        <div class="price">¥9,800</div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-image" style="background-image: url('/api/placeholder/400/300')"></div>
+                    <div class="menu-item-content">
+                        <h3>ソムリエ厳選ワイン</h3>
+                        <p>世界各国から厳選したワインを取り揃えております。料理に合わせたペアリングもご提案いたします。</p>
+                        <div class="price">グラス ¥1,200〜</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- インフォメーション -->
+    <section id="info" class="info">
+        <div class="container">
+            <div class="section-title">
+                <h2>INFORMATION</h2>
+                <p>店舗情報</p>
+            </div>
+            <div class="info-content">
+                <div class="info-details">
+                    <h3>アクセス・営業時間</h3>
+                    <div class="info-item">
+                        <strong>住所</strong> 東京都渋谷区神宮前X-X-X 表参道ビルXF
+                    </div>
+                    <div class="info-item">
+                        <strong>アクセス</strong> 東京メトロ表参道駅 A4出口より徒歩3分
+                    </div>
+                    <div class="info-item">
+                        <strong>営業時間</strong> 18:00〜23:00（L.O. 22:00）
+                    </div>
+                    <div class="info-item">
+                        <strong>定休日</strong> 月曜日（祝日の場合は翌日）
+                    </div>
+                    <div class="info-item">
+                        <strong>電話番号</strong> 03-XXXX-XXXX
+                    </div>
+                    <div class="info-item">
+                        <strong>席数</strong> カウンター8席、テーブル20席
+                    </div>
+                    <div class="info-item">
+                        <strong>ドレスコード</strong> スマートカジュアル
+                    </div>
+                </div>
+                <div class="info-map">
+                    <!-- プレースホルダー地図 -->
+                    <img src="/api/placeholder/600/350" alt="地図" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 予約セクション -->
+    <section id="reservation" class="reservation">
+        <div class="container">
+            <h2>ご予約</h2>
+            <p>ご予約はお電話にて承っております。2名様から承ります。週末は特に混み合いますので、お早めのご予約をお勧めいたします。</p>
+            <div class="tel">03-XXXX-XXXX</div>
+            <a href="tel:03XXXXXXXX" class="btn">今すぐ電話する</a>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-logo">BISTRO IKEOJI</div>
+            <div class="footer-links">
+                <a href="#concept">コンセプト</a>
+                <a href="#menu">メニュー</a>
+                <a href="#info">店舗情報</a>
+                <a href="#reservation">ご予約</a>
+            </div>
+            <div class="social-links">
+                <a href="#">Instagram</a>
+                <a href="#">Facebook</a>
+                <a href="#">Twitter</a>
+            </div>
+            <div class="copyright">© 2025 Bistro IKEOJI. All Rights Reserved.</div>
+        </div>
+    </footer>
+</body>
+</html>
